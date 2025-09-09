@@ -18,6 +18,17 @@ def process(orchestrator_connection: OrchestratorConnection, queue_element: Queu
     #Connecting to sharepoint
     credentials = UserCredential(RobotUsername, RobotPassword)
     ctx = ClientContext(API_url + "/Teams/tea-teamsite11819").with_credentials(credentials)
+    sharepoint_site = API_url + "/Teams/tea-teamsite11819"
+    certification = orchestrator_connection.get_credential("SharePointCert")
+    api = orchestrator_connection.get_credential("SharePointAPI")
+    
+    cert_credentials = {
+        "tenant": api.username,
+        "client_id": api.password,
+        "thumbprint": certification.username,
+        "cert_path": certification.password
+    }
+    ctx = ClientContext(sharepoint_site).with_client_certificate(**cert_credentials)
     web = ctx.web
     ctx.load(web)
     ctx.execute_query()
