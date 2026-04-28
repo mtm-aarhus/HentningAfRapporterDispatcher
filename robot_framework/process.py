@@ -7,17 +7,11 @@ from openpyxl import load_workbook
 import json 
 def process(orchestrator_connection: OrchestratorConnection, queue_element: QueueElement | None = None) -> None:
 
-    #Robotpassword
-    RobotCredential = orchestrator_connection.get_credential("Robot365User")
-    RobotUsername = RobotCredential.username
-    RobotPassword = RobotCredential.password
 
     #Sharepoint
     API_url = orchestrator_connection.get_constant("AarhusKommuneSharePoint").value
 
-    #Connecting to sharepoint
-    credentials = UserCredential(RobotUsername, RobotPassword)
-    ctx = ClientContext(API_url + "/Teams/tea-teamsite11819").with_credentials(credentials)
+    #Connecting to sharepoin
     sharepoint_site = API_url + "/Teams/tea-teamsite11819"
     certification = orchestrator_connection.get_credential("SharePointCert")
     api = orchestrator_connection.get_credential("SharePointAPI")

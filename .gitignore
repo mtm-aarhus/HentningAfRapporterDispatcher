@@ -30,6 +30,8 @@ test_password.py
 upload_test.py
 OpusBookMarkPerformer.py
 OpusBookMarkDispatcher.py
+ManglendeTidsregistreringDispatcher.xlsx
+test.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
